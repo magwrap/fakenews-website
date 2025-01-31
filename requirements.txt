@@ -1,5 +1,10 @@
 flask
 
-torch==2.0.1 
+pandas
+pylint
+
+torch==2.0.1 # you need python version >=3.8, <=3.11 and CUDA 11.7, CUDNN 8.5.0.96
 torchtext==0.15.2 
-nltk==3.8.
+nltk==3.8.1
+numpy<2
+

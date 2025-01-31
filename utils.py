@@ -1,13 +1,27 @@
+"""Utilities for the model training and predictions"""
+
 import re
+
 import torch
 from torch.nn.functional import pad
+
+import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-import nltk
+
+
+from NewsLSTM import NewsLSTM
 
 nltk.download('punkt')
 nltk.download('stopwords')
+
+# TODO: the language should be in config
 STOPWORDS = set(stopwords.words('english'))
+
+
+def yield_tokens(text_list):
+    for text in text_list:
+        yield clean_text(text)
 
 
 def clean_text(text):
@@ -28,34 +42,10 @@ def preprocess_text(text, vocab, max_length, pad_idx):
 
 
 def load_model(model_path, vocab_size, embedding_dim, hidden_dim, output_dim, pad_idx):
+    print(model_path, vocab_size, embedding_dim,
+          hidden_dim, output_dim, pad_idx)
     model = NewsLSTM(vocab_size, embedding_dim,
                      hidden_dim, output_dim, pad_idx)
-    model.load_state_dict(torch.load(MODEL_PATH))
+    model.load_state_dict(torch.load(model_path))
     model.eval()
     return model
-
-
-MODEL_PATH = "/content/drive/MyDrive/private-projects/fake-news-detection/models/news_lstm.pth"
-vocab_size = len(vocab)
-embedding_dim = 100
-hidden_dim = 128
-output_dim = 2
-pad_idx = vocab["<pad>"]
-max_length = 100
-
-model = load_model(MODEL_PATH, vocab_size, embedding_dim,
-                   hidden_dim, output_dim, pad_idx)
-
-
-print("Enter news text to classify (type 'exit' to quit):")
-while True:
-    user_input = input("News: ")
-    if user_input.lower() == "exit":
-        print("Exiting...")
-        break
-    processed_text = preprocess_text(user_input, vocab, max_length, pad_idx)
-    with torch.no_grad():
-        prediction = model(processed_text)
-        predicted_label = torch.argmax(prediction, dim=1).item()
-        label_name = "Real News" if predicted_label == 0 else "Fake News"
-        print(f"Prediction: {label_name}")

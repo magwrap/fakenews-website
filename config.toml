@@ -1,0 +1,9 @@
+[config]
+model_path = "./models/news_lstm.pth"
+embedding_dim = 100
+hidden_dim = 128
+output_dim = 2
+max_length = 100
+data_dir = 'dataset/'
+fake_news_csv = "fake.csv"
+true_news_csv = "true.csv"

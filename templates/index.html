@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fake News Detection</title>
+  <link rel="" type="" href="" />
+</head>
+
+<body>
+  <h1>Paste text below</h1>
+  <form action="/predict" method="post">
+    <textarea name="user_text" rows="5" cols="50" maxlength="100"></textarea><br />
+    <button type="submit">Evaluate</button>
+  </form>
+
+  {% if prediction is not none %}
+  <h2>Prediction: {{ prediction }}</h2>
+  {% endif %}
+</body>
+
+</html>
