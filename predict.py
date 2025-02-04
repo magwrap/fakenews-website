@@ -8,6 +8,7 @@ from torchtext.vocab import build_vocab_from_iterator
 
 from utils import load_model, yield_tokens, preprocess_text
 
+
 # get the config
 with open('config.toml', 'r', encoding="utf8") as f:
     config = toml.load(f)

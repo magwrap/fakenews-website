@@ -7,3 +7,21 @@ max_length = 100
 data_dir = 'dataset/'
 fake_news_csv = "fake.csv"
 true_news_csv = "true.csv"
+
+[random_forest]
+model_path = "./models/fake_news_rf_model.pkl"
+vectorizer_path = "./models/vectorizer.pkl"
+
+[lstm]
+model_path = "./models/news_lstm.pth"
+vectorizer_path = "./models/vectorizer.pkl"
+
+[logreg]
+model_path = "./models/fake_news_logreg_model.pkl"
+vectorizer_path = "./models/vectorizer.pkl"
+
+[naibay]
+model_path = "./models/fake_news_naive_bayes.pkl"
+vectorizer_path = "./models/vectorizer.pkl"
+
+

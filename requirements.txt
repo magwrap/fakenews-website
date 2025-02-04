@@ -8,3 +8,5 @@ torchtext==0.15.2
 nltk==3.8.1
 numpy<2
 
+scikit-learn
+joblib

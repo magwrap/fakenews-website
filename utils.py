@@ -49,3 +49,13 @@ def load_model(model_path, vocab_size, embedding_dim, hidden_dim, output_dim, pa
     model.load_state_dict(torch.load(model_path))
     model.eval()
     return model
+
+
+def format_prediction(prediction: int, text: str, model: str):
+    print("probabilty: ", prediction)
+
+    response: str = f"""Article: {text[:50]}... → Prediction: {
+        'FAKE NEWS' if prediction == 1 else 'REAL NEWS'}\n Model: {model}"""
+    print(response)
+
+    return response

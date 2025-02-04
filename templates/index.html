@@ -5,13 +5,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fake News Detection</title>
-  <link rel="" type="" href="" />
 </head>
 
 <body>
   <h1>Paste text below</h1>
   <form action="/predict" method="post">
-    <textarea name="user_text" rows="5" cols="50" maxlength="100"></textarea><br />
+    <textarea name="user_text" rows="10" cols="100"></textarea><br />
+
+    <label for="model">Choose a model:</label>
+    <select name="model">
+      <option value="random_forest">Random Forest</option>
+      <!-- <option value="lstm">Long short-term memory</option> -->
+      <option value="logreg">Logistic Regression</option>
+      <option value="naibay">Naive Bayers</option>
+    </select><br /><br />
+
     <button type="submit">Evaluate</button>
   </form>
 
